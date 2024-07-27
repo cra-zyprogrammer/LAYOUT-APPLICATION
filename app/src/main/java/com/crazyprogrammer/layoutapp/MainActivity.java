@@ -2,10 +2,12 @@ package com.crazyprogrammer.layoutapp;
 
 import android.os.Bundle;
 import android.view.Menu;
+import android.widget.ArrayAdapter;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.Spinner;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -20,6 +22,7 @@ public class MainActivity extends AppCompatActivity {
     TextView textView;
     CheckBox checkBox;
     RadioGroup radioGroup;
+    Spinner spinner;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +33,7 @@ public class MainActivity extends AppCompatActivity {
         textView = findViewById(R.id.textView);
         checkBox = findViewById(R.id.checkbox);
         radioGroup = findViewById(R.id.radiogroup);
+        spinner = findViewById(R.id.spinner);
 
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
@@ -55,6 +59,22 @@ public class MainActivity extends AppCompatActivity {
             v.setPadding(systemBars.left, systemBars.top, systemBars.right, systemBars.bottom);
             return insets;
         });
+
+        // Data source of spinner in array
+        String[] Cources = {"C++" , "Java" , "Python" , "Ruby" , "kotlin" , "Dart"};
+
+        // to use populate the spinner with items from a string array resource
+
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(
+                this,
+                android.R.layout.simple_spinner_item,
+                Cources
+
+        );
+
+        // Apply adaptor to the spinner
+        spinner.setAdapter(adapter);
+
     }
 
     @Override
